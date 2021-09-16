@@ -95,12 +95,11 @@ def handle_child_root(child_str = ""):
                     #print(dcm_dataset.dir())
                     img_name = dcm_dataset['SeriesDescription'].value
                     #print(img_name)
-                    if img_name in ['SA_1','SA_2','SA_3','SA_4',
-                                    'SA_5','SA_6','LA_2CH','LA_PLUS_60',
-                                    'LA_PLUS60','LA_MINUS_60','LA_MINUS60']:
-                        new_img_str = sorted_dcm_str + '/' +img_name+'.dcm'
-                        shutil.copy(dcm_str, new_img_str)
-                        print(dcm_dataset['SeriesDescription'].value)
+                    if '_' in img_name:
+                        if img_name.split('_')[0] == 'LA' or img_name.split('_')[0] == 'SA':
+                            new_img_str = sorted_dcm_str + '/' +img_name+'.dcm'
+                            shutil.copy(dcm_str, new_img_str)
+                            print(dcm_dataset['SeriesDescription'].value)
 
 if __name__ == '__main__':
 
@@ -116,6 +115,5 @@ if __name__ == '__main__':
         dir_str = sys.argv[1]
         dir_str = dir_str.replace('\\','/')
         print(dir_str)
-
 
         return_sorted_dicom(dir_str)
