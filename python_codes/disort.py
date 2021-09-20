@@ -117,4 +117,5 @@ if __name__ == '__main__':
         print(dir_str)
 
         return_sorted_dicom(dir_str)
+
         
