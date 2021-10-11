@@ -49,7 +49,7 @@ def handle_roots(dir_str=""):
     child_root = 0
     
     # handle the assigned str
-    if dir_str.split('/')[-1] == 'MRI':
+    if dir_str.split('/')[-1] == 'R403Q':
         print('grand is activated')
         grand_parent_root = 1
     elif '-' in dir_str.split('/')[-1] and dir_str.split('/')[-1].split('-')[0].isnumeric():
@@ -94,12 +94,12 @@ def handle_child_root(child_str = ""):
                     dcm_dataset = pydicom.dcmread(dcm_str)
                     #print(dcm_dataset.dir())
                     img_name = dcm_dataset['SeriesDescription'].value
-                    #print(img_name)
+                    print(img_name)
                     if '_' in img_name:
                         if img_name.split('_')[0] == 'LA' or img_name.split('_')[0] == 'SA':
                             new_img_str = sorted_dcm_str + '/' +img_name+'.dcm'
                             shutil.copy(dcm_str, new_img_str)
-                            print(dcm_dataset['SeriesDescription'].value)
+                            #print(dcm_dataset['SeriesDescription'].value)
 
 if __name__ == '__main__':
 
